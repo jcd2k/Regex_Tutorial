@@ -33,6 +33,13 @@ dollar ('$') - matches to the end of a line or a string
 
 There are many more anchors, some of which are synonymous in their functionality. Nevertheless, there are plenty to choose from when attempting to manipulate the positioning of a string or line of code.
 
+Anchor examples:
+
+^Hello          matches any string starting with `Hello`
+World$          matches any string ending with `World`
+^Hello World$   matches exact string
+goodbye         matches any string that has the exact text `goodbye` in it
+
 ### Quantifiers
 
 Quantifies, also referred to as repetition operators, are quite simple in their functionality. They act as a sort of toggle when attampting to read a token which precedes a certain element or component. With this being said, there are two common quantifiers:
@@ -49,6 +56,12 @@ These operators are useful when matching two elements which are in proximity to 
 
 With this being said, you'll spare yourself from having to manually copy elements by simply using a quantifier, allowing you to work more efficiently.
 
+Quantifier examples:
+
+xyz*        matches a string that has xy followed by zero or more z
+xyz+        matches a string that has xy followed by one or more z
+xyz?        matches a string that has xy followed by zero or one z
+
 ### Grouping Constructs
 
 In Regex, grouping is exactly how it sounds, it allows you to group together various elements inside of rounded brackets or parentheses. Much like a math equation, whatever Regex function is applied from outside of the group will be applied to each individual element inside of the group. As previously stated, the two ways to create a group are:
@@ -61,6 +74,12 @@ Parentheses ['()'] - used to specify a group
 
 With the group being establlished, you may place another operator such as an anchor, which would then perform anchor mathcing on each element iside of the group. This allows the repetitive operations to be applied to each of the proper elements in one brief, consolidated statement. 
 
+Grouping Construct examples:
+
+x(yz)           parentheses create a capturing group with value yz
+x(?:yz)*        using ?: we disable the capturing group
+x(?<cat>yz)     using ?<cat> we assign a name to the group
+
 ### Bracket Expressions
 
 Bracket expressions in Regex act in the same manner as character classes, they match a single character from a string. They use essentially the same syntax, with one notable distinction which is the omission of the backlash ('\') when specifying which character to select. Like the name might suggest, the syntax for this expression is:
@@ -68,6 +87,12 @@ Bracket expressions in Regex act in the same manner as character classes, they m
 Brackets ('[\]') - specifies a single character to be isolated from a string
 
 The reason why brackets are useful form of character classing is due to their ability to isolate certain characters into a locale, where they can be specifically manipulated.
+
+Bracket examples:
+
+[xyz]         matches a string that etiher has x or x y or x z (same as x|y|z)
+[x-y]         similar to case above
+[u-zU-Z0-9]   a string that represents a single hexadecimal digit, case insensitively
 
 ### Character Classes
 
@@ -77,6 +102,13 @@ Brackets ('[]') (no backslash) - specifies a series of characters to be isolated
 
 As touched on previously in bracket expressions, character classes allow such common elements to be isolated so that more specific operations may be performed on them.
 
+Character Class examples:
+
+\d    matches a single any digit 0-9
+\w    matches a single any character that is a-z
+\s    matches ` `
+.     matches any character
+
 ### The OR Operator
 
 The OR Regex operation allows for the possibility of multiple expressions to be read, based on operational perameters which have been established. This provides a sort of grouping which can be called under different circumstances, depending on the desired outcome. These expressions usually follow some sort of function with multiple resulting possibilities. For syntax, the OR operator uses:
@@ -84,6 +116,10 @@ The OR Regex operation allows for the possibility of multiple expressions to be 
 Double Vertical Lines ('||') - used to separate multiple desired resulting expressions
 
 With the OR operator, you are able to achieve flexibility in the outcomes of a single function. In terms of consolidation, this saves you from writing the same conditional function for each outcome you wish to be possible.
+
+OR Operator examples:
+
+x(y||z)  matches a string that has x followed by y or z (and captures y or z)
 
 ### Flags
 
@@ -96,6 +132,11 @@ and
 ('g' Global) - searches for all instances of an expression
 
 Although fairly simple in their functionality, flags are useful operators in the sense that they allow the developer to more precisely define the scope of their queries.
+
+Flag examples:
+
+/Hello/g   matches all `Hello` in the test
+/Hello/i   matches all `hello` despite casing (eg. HellO, heLLo, etc.)
 
 ### Character Escapes
 
